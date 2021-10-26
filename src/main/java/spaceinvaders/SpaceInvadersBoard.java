@@ -141,6 +141,7 @@ public class SpaceInvadersBoard extends AbstractBoard{
                 }
             }
 
+            
             int y = shot.getY();
             y -= 4;
 
@@ -243,17 +244,60 @@ public class SpaceInvadersBoard extends AbstractBoard{
                     bomb.setDestroyed(true);
                 }
             }
+            
+            updateBadSpriteShot(bomb);
 
-            if (!bomb.isDestroyed()) {
+//            if (!bomb.isDestroyed()) {
+//
+//                bomb.setY(bomb.getY() + 1);
+//
+//                if (bomb.getY() >= Commons.GROUND - Commons.BOMB_HEIGHT) {
+//
+//                    bomb.setDestroyed(true);
+//                }
+//            }
+        }
+	}
+    
+    
+    //HomeGui
+    protected void updateBadSpriteShot(Bomb bomb) {
+    	if (!bomb.isDestroyed()) {
+    		int shotDirection = bomb.getShotDirection();
+    		
+    		if(shotDirection == 1) {
+    			bomb.setY(bomb.getY() - 1);
+    			bomb.setX(bomb.getX() - 1);
+    		}
+    		if(shotDirection == 2) {
+    			bomb.setY(bomb.getY() - 1);
+    		}
+    		if(shotDirection == 3) {
+    			bomb.setY(bomb.getY() - 1);
+    			bomb.setX(bomb.getX() + 1);
+    		}
+    		if(shotDirection == 4) {
+    			bomb.setX(bomb.getX() - 1);
+    		}
+    		if(shotDirection == 5) {
+    			bomb.setX(bomb.getX() + 1);
+    		}
+    		if(shotDirection == 6) {
+    			bomb.setY(bomb.getY() + 1);
+    			bomb.setX(bomb.getX() - 1);
+    		}
+    		if(shotDirection == 7) {
+    			bomb.setY(bomb.getY() + 1);
+    		}
+    		if(shotDirection == 8) {
+    			bomb.setY(bomb.getY() + 1);
+    			bomb.setX(bomb.getX() + 1);
+    		}
 
-                bomb.setY(bomb.getY() + 1);
-
-                if (bomb.getY() >= Commons.GROUND - Commons.BOMB_HEIGHT) {
-
-                    bomb.setDestroyed(true);
-                }
+            if (bomb.getY() >= Commons.GROUND - Commons.BOMB_HEIGHT || bomb.getX() >= Commons.GROUND - Commons.BOMB_HEIGHT) {
+                bomb.setDestroyed(true);
             }
         }
-	}    
+    }
 }
 

@@ -32,4 +32,18 @@ public class FreezeMonsterSlime extends BadSprite {
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         setImage(scaledIcon.getImage());
     }
+    
+    //HomeGui
+    private int shotDirection;
+    
+    public void setShotDirection(int shotDirection) {
+    	this.shotDirection = shotDirection;
+    }
+    
+    public int getShotDirection() {
+    	return this.shotDirection;
+    }
+    
+    
+    
 }

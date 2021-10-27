@@ -18,7 +18,7 @@ import spaceinvaders.sprite.*;
 public class SpaceInvadersBoard extends AbstractBoard{  
     //define sprites
     //private List<BadSprite> aliens;
-    private Shot shot;    
+    private Shot shot;
     
     // define global control vars   
     private int direction = -1;
@@ -246,16 +246,6 @@ public class SpaceInvadersBoard extends AbstractBoard{
             }
             
             updateBadSpriteShot(bomb);
-
-//            if (!bomb.isDestroyed()) {
-//
-//                bomb.setY(bomb.getY() + 1);
-//
-//                if (bomb.getY() >= Commons.GROUND - Commons.BOMB_HEIGHT) {
-//
-//                    bomb.setDestroyed(true);
-//                }
-//            }
         }
 	}
     

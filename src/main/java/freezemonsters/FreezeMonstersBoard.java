@@ -3,13 +3,12 @@ package freezemonsters;
 import freezemonsters.sprite.FreezeMonsterMonster;
 import freezemonsters.sprite.FreezeMonsterPlayer;
 import freezemonsters.sprite.FreezeMonsterSlime;
-import freezemonsters.FreezeMonsterCommons;
+import freezemonsters.sprite.FreezeMonsterShot;
+import spaceinvaders.Commons;
+import spaceinvaders.sprite.Shot;
 import spriteframework.AbstractBoard;
-import spriteframework.Commons;
 import spriteframework.sprite.BadSprite;
 import spriteframework.sprite.Player;
-
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.Random;
@@ -18,6 +17,7 @@ import javax.swing.ImageIcon;
 
 public class FreezeMonstersBoard extends AbstractBoard {
     private int deaths = 0;
+    private FreezeMonsterShot shot;
 
     public FreezeMonstersBoard() {
         super(FreezeMonsterCommons.BOARD_WIDTH, FreezeMonsterCommons.BOARD_HEIGHT, Color.CYAN);
@@ -37,17 +37,23 @@ public class FreezeMonstersBoard extends AbstractBoard {
             FreezeMonsterMonster monster = new FreezeMonsterMonster(x,y);
             badSprites.add(monster);
         }
-
     }
 
     @Override
     protected void createOtherSprites() {
-    	
+        shot = new FreezeMonsterShot();
     }
 
     @Override
     protected void drawOtherSprites(Graphics g) {
+        drawShot(g);
+    }
 
+    private void drawShot(Graphics g) {
+
+        if (shot.isVisible()) {
+            g.drawImage(shot.getImage(), shot.getX(), shot.getY(), this);
+        }
     }
 
     @Override
@@ -61,21 +67,59 @@ public class FreezeMonstersBoard extends AbstractBoard {
         }
 
         // player
-        for (Player player: players)
+        for (Player player: players) {
             player.act();
+
+        }
+        //shot
+        if (shot.isVisible()) {
+            shot.act();
+        }
 
         //Monsters
         for(BadSprite monster: badSprites){
             monster.act();
+            if(shot.isVisible()){
+                int monsterX = monster.getX();
+                int monsterY = monster.getY();
+                int shotX = shot.getX();
+                int shotY = shot.getY();
+
+                if (monster.isVisible() && shot.isVisible()) {
+                    if (shotX >= monsterX
+                            && shotX <= (monsterX + FreezeMonsterCommons.MONSTER_WIDTH)
+                            && shotY >= (monsterY)
+                            && shotY <= (monsterY + FreezeMonsterCommons.MONSTER_HEIGHT)) {
+                        monster.setDying(true);
+                        deaths++;
+                        shot.die();
+                    }
+                }
+            }
         }
-        
         //Slime
         updateOtherSprites();
+
     }
     
     @Override
     protected void processOtherSprites(Player player, KeyEvent e) {
-    	
+        int x = player.getX();
+        int y = player.getY();
+        int dirX = player.getDirectionX();
+        int dirY = player.getDirectionY();
+
+        int key = e.getKeyCode();
+
+        if (key == KeyEvent.VK_SPACE) {
+
+            if (inGame) {
+
+                if (!shot.isVisible()) {
+                    shot = new FreezeMonsterShot(x, y,dirX,dirY);
+                }
+            }
+        }
     }
 
 
@@ -113,15 +157,6 @@ public class FreezeMonstersBoard extends AbstractBoard {
             
             updateBadSpriteShot(bomb);
 
-//            if (!bomb.isDestroyed()) {
-//
-//                bomb.setY(bomb.getY() + 1);
-//
-//                if (bomb.getY() >= Commons.GROUND - Commons.BOMB_HEIGHT) {
-//
-//                    bomb.setDestroyed(true);
-//                }
-//            }
         }
 	}
     

@@ -9,6 +9,9 @@ public interface FreezeMonsterCommons extends Commons {
     int MONSTER_SPEED = 1;
     int SLIME_WIDTH = 30;
     int SLIME_HEIGHT = 30;
+    int SHOT_WIDTH = 30;
+    int SHOT_HEIGHT = 30;
+    int SHOT_SPEED = 10;
     int PLAYER_WIDTH = 30;
     int PLAYER_HEIGHT = 50;
     int PLAYER_SPEED = 4;

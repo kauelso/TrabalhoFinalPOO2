@@ -27,7 +27,17 @@ public class Player extends Sprite {
         this.speed = speed;
     }
 
+    public int getDirectionX(){
+        if (dx < 0) return -1;
+        if (dx > 0) return 1;
+        return 0;
+    }
 
+    public int getDirectionY(){
+        if (dy < 0) return -1;
+        if (dy > 0) return 1;
+        return 0;
+    }
 
     public Player(String path, int width,int height,int init_x, int init_y) {
         this.imagePath = path;

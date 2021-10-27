@@ -13,15 +13,25 @@ import java.util.Random;
 public class FreezeMonsterMonster extends BadnessBoxSprite {
     private FreezeMonsterSlime slime;
     private int directionX = 0;
+
+    private Boolean isFrozen;
     private int directionY = 0;
+    private int monsterNumber;
+    private Random generator;
 
     public FreezeMonsterMonster(int x, int y){
+        generator = new Random();
+        monsterNumber = generator.nextInt(9) + 1;
         initFreezeMonster(x,y);
         getImageDimensions();
     }
 
+    public Boolean getIsFrozen(){return this.isFrozen;}
+
+    public void setIsFrozen(Boolean isFrozen){this.isFrozen = isFrozen;}
+
     private void initFreezeMonster(int x, int y){
-        Random generator = new Random();
+        setIsFrozen(false);
         this.x = x;
         this.y = y;
 
@@ -31,8 +41,6 @@ public class FreezeMonsterMonster extends BadnessBoxSprite {
         if(monsterDirectionY == 1) this.directionY = 1; else this.directionY = -1;
 
         slime = new FreezeMonsterSlime(x,y);
-
-        int monsterNumber = generator.nextInt(9) + 1;
 
         ImageIcon ii = new ImageIcon(this.getClass().getResource("/images/monster" + monsterNumber + ".png"));
         Image scaledImage = ii.getImage().getScaledInstance(FreezeMonsterCommons.MONSTER_WIDTH, FreezeMonsterCommons.MONSTER_HEIGHT, Image.SCALE_SMOOTH);
@@ -53,6 +61,7 @@ public class FreezeMonsterMonster extends BadnessBoxSprite {
 
     @Override
     public void act() {
+        if(isFrozen) return;
         moveX(directionX);
         moveY(directionY);
 
@@ -74,6 +83,19 @@ public class FreezeMonsterMonster extends BadnessBoxSprite {
             y = Commons.BOARD_HEIGHT - 2 * getImageHeight();
             directionY = directionY * (-1);
         }
+    }
+
+    public void freeze(){
+        setIsFrozen(true);
+        ImageIcon ii = new ImageIcon(this.getClass().getResource("/images/monster" + monsterNumber + "bg.png"));
+        Image scaledImage = ii.getImage().getScaledInstance(FreezeMonsterCommons.MONSTER_WIDTH, FreezeMonsterCommons.MONSTER_HEIGHT, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+        setImage(scaledIcon.getImage());
+    }
+
+    @Override
+    public void setDying(boolean dying) {
+        freeze();
     }
 
     @Override

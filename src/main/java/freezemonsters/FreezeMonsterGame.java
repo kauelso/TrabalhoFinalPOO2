@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class FreezeMonsterGame extends MainFrame {
     public FreezeMonsterGame() {
-        super("Freeze Monsters");
+        super("Freeze Monsters", FreezeMonsterCommons.BOARD_WIDTH, FreezeMonsterCommons.BOARD_HEIGHT);
     }
 
     @Override

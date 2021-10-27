@@ -35,12 +35,8 @@ public class Bomb extends BadSprite {
     }
     
     //HomeGui
-    private int shotDirection;
-    
-    public void setShotDirection(int shotDirection) {
-    	this.shotDirection = shotDirection;
-    }
-    
+    private int shotDirection = 7;
+
     public int getShotDirection() {
     	return this.shotDirection;
     }

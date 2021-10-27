@@ -234,9 +234,9 @@ public class SpaceInvadersBoard extends AbstractBoard{
             if (players.get(0).isVisible() && !bomb.isDestroyed()) {
 
                 if (bombX >= (playerX)
-                        && bombX <= (playerX + Commons.PLAYER_WIDTH)
-                        && bombY >= (playerY)
-                        && bombY <= (playerY + Commons.PLAYER_HEIGHT)) {
+                    && bombX <= (playerX + Commons.PLAYER_WIDTH)
+                    && bombY >= (playerY)
+                    && bombY <= (playerY + Commons.PLAYER_HEIGHT)) {
 
                     ImageIcon ii = new ImageIcon(explImg);
                     players.get(0).setImage(ii.getImage());
@@ -294,7 +294,7 @@ public class SpaceInvadersBoard extends AbstractBoard{
     			bomb.setX(bomb.getX() + 1);
     		}
 
-            if (bomb.getY() >= Commons.GROUND - Commons.BOMB_HEIGHT || bomb.getX() >= Commons.GROUND - Commons.BOMB_HEIGHT) {
+            if (bomb.getY() >= Commons.GROUND - Commons.BOMB_HEIGHT) {
                 bomb.setDestroyed(true);
             }
         }

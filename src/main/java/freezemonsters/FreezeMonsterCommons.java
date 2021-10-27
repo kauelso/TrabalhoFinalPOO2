@@ -3,7 +3,7 @@ package freezemonsters;
 import spriteframework.Commons;
 
 public interface FreezeMonsterCommons extends Commons {
-    int MONSTER_AMOUNT = 5;
+	int MONSTER_AMOUNT = 5;
     int MONSTER_WIDTH = 30;
     int MONSTER_HEIGHT = 30;
     int MONSTER_SPEED = 1;

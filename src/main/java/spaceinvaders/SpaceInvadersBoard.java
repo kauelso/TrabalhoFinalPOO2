@@ -18,7 +18,7 @@ import spaceinvaders.sprite.*;
 public class SpaceInvadersBoard extends AbstractBoard{  
     //define sprites
     //private List<BadSprite> aliens;
-    private Shot shot;    
+    private Shot shot;
     
     // define global control vars   
     private int direction = -1;

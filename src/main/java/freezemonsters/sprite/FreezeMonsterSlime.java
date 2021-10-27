@@ -4,6 +4,7 @@ import spriteframework.sprite.BadSprite;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class FreezeMonsterSlime extends BadSprite {
     private boolean isDestroyed;
@@ -26,10 +27,28 @@ public class FreezeMonsterSlime extends BadSprite {
 
         this.x = x;
         this.y = y;
-
+        
+        Random generator = new Random();
+        int direction = 1+generator.nextInt(7);
+        setShotDirection(direction);
+        
         ImageIcon ii = new ImageIcon(this.getClass().getResource("/images/gosma.png"));
         Image scaledImage = ii.getImage().getScaledInstance(30, 50, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         setImage(scaledIcon.getImage());
     }
+    
+    //HomeGui
+    private int shotDirection;
+    
+    public void setShotDirection(int shotDirection) {
+    	this.shotDirection = shotDirection;
+    }
+    
+    public int getShotDirection() {
+    	return this.shotDirection;
+    }
+    
+    
+    
 }

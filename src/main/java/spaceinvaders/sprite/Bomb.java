@@ -6,7 +6,7 @@ import spriteframework.sprite.BadSprite;
 
 public class Bomb extends BadSprite {
 
-    private boolean destroyed;
+	private boolean destroyed;
 
     public Bomb(int x, int y) {
         initBomb(x, y);
@@ -34,5 +34,11 @@ public class Bomb extends BadSprite {
         return destroyed;
     }
     
+    //HomeGui
+    private int shotDirection = 7;
+
+    public int getShotDirection() {
+    	return this.shotDirection;
+    }
     
 }

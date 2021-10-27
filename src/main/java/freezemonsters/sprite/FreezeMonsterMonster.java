@@ -57,13 +57,11 @@ public class FreezeMonsterMonster extends BadnessBoxSprite {
         moveY(directionY);
 
         if (x <= 2) {
-
             x = 2;
             directionX = directionX * (-1);
         }
 
         if (y <= 2) {
-
             y = 2;
             directionY = directionY * (-1);
         }

@@ -1,5 +1,6 @@
 package freezemonsters.sprite;
 
+import freezemonsters.FreezeMonsterCommons;
 import spriteframework.sprite.BadSprite;
 
 import javax.swing.*;
@@ -47,6 +48,46 @@ public class FreezeMonsterSlime extends BadSprite {
     
     public int getShotDirection() {
     	return this.shotDirection;
+    }
+
+    @Override
+    public void act() {
+        if (!this.isDestroyed()) {
+            int shotDirection = this.getShotDirection();
+
+            if(shotDirection == 1) {
+                this.setY(this.getY() - 1);
+                this.setX(this.getX() - 1);
+            }
+            if(shotDirection == 2) {
+                this.setY(this.getY() - 1);
+            }
+            if(shotDirection == 3) {
+                this.setY(this.getY() - 1);
+                this.setX(this.getX() + 1);
+            }
+            if(shotDirection == 4) {
+                this.setX(this.getX() - 1);
+            }
+            if(shotDirection == 5) {
+                this.setX(this.getX() + 1);
+            }
+            if(shotDirection == 6) {
+                this.setY(this.getY() + 1);
+                this.setX(this.getX() - 1);
+            }
+            if(shotDirection == 7) {
+                this.setY(this.getY() + 1);
+            }
+            if(shotDirection == 8) {
+                this.setY(this.getY() + 1);
+                this.setX(this.getX() + 1);
+            }
+
+            if (this.getY() >= FreezeMonsterCommons.GROUND - FreezeMonsterCommons.SLIME_HEIGHT && this.getX() >= FreezeMonsterCommons.GROUND - FreezeMonsterCommons.SLIME_WIDTH) {
+                this.setDestroyed(true);
+            }
+        }
     }
     
     

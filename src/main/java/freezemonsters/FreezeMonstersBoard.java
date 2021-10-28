@@ -155,51 +155,10 @@ public class FreezeMonstersBoard extends AbstractBoard {
                 }
             }
             
-            updateBadSpriteShot(bomb);
+            bomb.act();
 
         }
 	}
-    
-    
-    //HomeGui
-    protected void updateBadSpriteShot(FreezeMonsterSlime bomb) {
-    	if (!bomb.isDestroyed()) {
-    		int shotDirection = bomb.getShotDirection();
-    		
-    		if(shotDirection == 1) {
-    			bomb.setY(bomb.getY() - 1);
-    			bomb.setX(bomb.getX() - 1);
-    		}
-    		if(shotDirection == 2) {
-    			bomb.setY(bomb.getY() - 1);
-    		}
-    		if(shotDirection == 3) {
-    			bomb.setY(bomb.getY() - 1);
-    			bomb.setX(bomb.getX() + 1);
-    		}
-    		if(shotDirection == 4) {
-    			bomb.setX(bomb.getX() - 1);
-    		}
-    		if(shotDirection == 5) {
-    			bomb.setX(bomb.getX() + 1);
-    		}
-    		if(shotDirection == 6) {
-    			bomb.setY(bomb.getY() + 1);
-    			bomb.setX(bomb.getX() - 1);
-    		}
-    		if(shotDirection == 7) {
-    			bomb.setY(bomb.getY() + 1);
-    		}
-    		if(shotDirection == 8) {
-    			bomb.setY(bomb.getY() + 1);
-    			bomb.setX(bomb.getX() + 1);
-    		}
-
-            if (bomb.getY() >= FreezeMonsterCommons.GROUND - FreezeMonsterCommons.SLIME_HEIGHT && bomb.getX() >= FreezeMonsterCommons.GROUND - FreezeMonsterCommons.SLIME_WIDTH) {
-                bomb.setDestroyed(true);
-            }
-        }
-    }
     @Override
     protected Player createPlayer() {
         return new FreezeMonsterPlayer();
